@@ -11,7 +11,7 @@ const ChartGant = () => {
       {error !== ""
         ? error :
         <div>
-          erherherhreh
+          test
         </div>
       }
     </div>
