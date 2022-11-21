@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import {useAppDispatch, useAppSelector} from "./hooks/redux";
+import {getChartGantData} from "./actions/actionChartGant";
+import ChartGant from "./components/ChartGant";
 
 function App() {
+  const dispatch = useAppDispatch()
+  const { isLoading } = useAppSelector(state => state.appSlice)
+
+  useEffect(() => {
+    dispatch(getChartGantData())
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    isLoading ? <h1>Загрузка...</h1> : <ChartGant/>
   );
 }
 
